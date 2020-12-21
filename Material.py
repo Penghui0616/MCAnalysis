@@ -56,8 +56,8 @@ class Material():
 				return 1-0.13*(R-40)/40
 		R = eval("".join(list(filter(str.isdigit, concreteTag))))
 		fc = -R*0.88*factor1(R)*factor2(R)*1000
-		ec = -0.02
-		ecu = -0.04
+		ec = -0.002
+		ecu = -0.004
 		Ec = math.sqrt(-fc/1000)*5e6
 		coverPara = [fc, ec, ecu, Ec]
 		np.savetxt(self.sectName + "/coverParameter.txt", coverPara, fmt="%0.6f")

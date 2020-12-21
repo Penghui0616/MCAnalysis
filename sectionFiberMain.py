@@ -210,7 +210,7 @@ def polygonSection(sectName,outSideNode,outSideEle,coverThick,coreSize,coverSize
         coreFiber, pointsPlot, trianglesPlot = sectInstance.coreMesh(coreSize, outLineList)
         coverFiber, outNodeReturnPlot, inNodeReturnPlot = sectInstance.coverMesh(coverSize, coverThick)
         if autoBarMesh==True:
-            barFiber, barXListPlot, barYListPlot = sectInstance.barMesh(outBarD, outBarDist, coverThick)
+            barFiber, barXListPlot, barYListPlot = sectInstance.barMesh(coverThick, outBarD, outBarDist)
         elif autoBarMesh==False:
             barFiber1, barXListPlot1, barYListPlot1 = sectInstance.barMesh(coverThick, outBarD, outBarDist)
             barFiber2, barXListPlot2, barYListPlot2 = sectInstance.userBarMesh(userBarNodeDict,userBarEleDict)

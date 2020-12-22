@@ -21,7 +21,7 @@ class MC():
 		self.sectName = sectName
 		self.direction = direction
 
-	def MCAnalysis(self, axialLoad, moment, maxMu=20, numIncr=500):
+	def MCAnalysis(self, axialLoad, moment, maxMu=30, numIncr=100):
 		"""
 		Moment curvature analysis for definded section
 		:param axialLoad: axial load
@@ -156,6 +156,8 @@ class MC():
 	def MCCurve(self):
 
 		fsy = np.loadtxt(self.sectName + "/barParameter.txt")[0]
+		Es = np.loadtxt(self.sectName + "/barParameter.txt")[2]
+		ey = fsy/Es
 		esu = np.loadtxt(self.sectName + "/barParameter.txt")[5]
 		ecu = np.loadtxt(self.sectName + "/coreParameter.txt")[2]
 
@@ -173,16 +175,16 @@ class MC():
 		#寻找钢筋首次屈服点
 		for eachFilePath in barDir:
 			barStressStrain=np.loadtxt('barRecorder/'+eachFilePath)
-			barStress=barStressStrain[:,1]
+			barStrain=barStressStrain[:,2]
 			try:
-				indexNum=np.where(barStress>=fsy)[0][0]
+				indexNum=np.where(barStrain>=ey)[0][0]
 				barYieldIndexList.append(indexNum)
 			except:
 				pass
 		barYieldIndex=min(barYieldIndexList)
 		barYieldCurvature=sectCurvature[barYieldIndex]
 		barYieldMoment=sectMoment[barYieldIndex]
-		print(barYieldMoment,barYieldCurvature)
+		print('yieldM,yielde',barYieldMoment,barYieldCurvature)
 
 		#寻找核心混凝土压溃或者纵筋达到极限应变的点
 		barCrackIndex = len(sectMoment)-1
@@ -221,13 +223,13 @@ class MC():
 
 		ultimateMoment = sectMoment[crackIndex]
 		ultimateCurvature = sectCurvature[crackIndex]
-		print(ultimateMoment,ultimateCurvature)
+		print('ultM,ulte：',ultimateMoment,ultimateCurvature)
 
 		#寻找截面弯矩达到最大点
 		momentMaxMoment = max(sectMoment[:crackIndex+1])
 		momentMaxIndex = np.where(sectMoment[:crackIndex+1] == momentMaxMoment)[0][0]
 		momentMaxCurvature = sectCurvature[:crackIndex+1][momentMaxIndex]
-		print(momentMaxMoment,momentMaxCurvature)
+		print('maxM, maxe：',momentMaxMoment,momentMaxCurvature)
 
 		#计算等效屈服弯矩和曲率
 		totArea=np.trapz(sectMoment[:crackIndex], sectCurvature[:crackIndex])
@@ -235,7 +237,7 @@ class MC():
 		barYieldY=barYieldMoment
 		tanXY=barYieldY/barYieldX
 
-		epsilon=0.01*totArea
+		epsilon=0.001*totArea
 		low=0.0
 		high=momentMaxMoment
 		momentEffictive=(low+high)/2.0
@@ -249,6 +251,7 @@ class MC():
 		curvatureEffective=momentEffictive/float(tanXY)
 		blinerX=[0,curvatureEffective,ultimateCurvature]
 		blinerY=[0,momentEffictive,momentEffictive]
+		print('effM, effe：', momentEffictive, curvatureEffective)
 
 		self.plotLinearRegre(sectCurvature[:crackIndex],sectMoment[:crackIndex],blinerX,blinerY,\
 		                 barYieldCurvature,barYieldMoment,momentMaxCurvature,momentMaxMoment)

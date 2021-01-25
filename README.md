@@ -3,7 +3,7 @@ Email: penghui@tongji.edu.cn
 Environemet: Successfully excucted in python 3.8
 ______
 # MCAnalysis
-This is an auto moment curvature analysis tool. Mesh generation is accomplished by gmesh, and  moment curvature analysis is running in openseespy platform.
+This is an auto moment-curvature analysis tool. Mesh generation is accomplished by gmesh, and  moment-curvature analysis is running in openseespy platform.
 
 ## Tutorials 
 1. download the zip file.
@@ -13,7 +13,7 @@ This is an auto moment curvature analysis tool. Mesh generation is accomplished 
 
 The followings are some basic examples, and you can also find them in the download files.
 
-## Circle section moment curvature analysis
+## Moment-curvature analysis of a circular section
 ```python 
 #Define section
 sectName = 'CircularPier'
@@ -45,7 +45,7 @@ momEff = mcInstance.MCCurve()
 ```
 <img src="https://github.com/Penghui0616/MCAnalysis/blob/master/Circular.png" div align="center">
 
-## Rectangular section moment curvature analysis
+## Moment-curvature analysis of a rectangular section 
 ```python 
 #Define section
 sectName = 'RectangularPier'

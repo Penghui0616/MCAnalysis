@@ -43,7 +43,7 @@ mcInstance = MC('CircularPier', 'X')
 mcInstance.MCAnalysis(4244, 0)
 momEff = mcInstance.MCCurve()
 ```
-<img src="https://github.com/Penghui0616/MCAnalysis/raw/main/Circular.png" width =40% height =40% div align="center">
+<img src="https://github.com/Penghui0616/MCAnalysis/blob/master/Circular.png" width =40% height =40% div align="center">
 
 ## Rectangular section moment curvature analysis
 ```python 
@@ -92,4 +92,4 @@ mcInstance = MC('RectangularPier', 'X')
 mcInstance.MCAnalysis(23000, 0)
 momEff = mcInstance.MCCurve()
 ```
-<img src="https://github.com/Penghui0616/MCAnalysis/raw/main/Rectangular.png" width =40% height =40% div align="center">
+<img src="https://github.com/Penghui0616/MCAnalysis/blob/master/Rectangular.png" width =40% height =40% div align="center">

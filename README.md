@@ -43,7 +43,7 @@ mcInstance = MC('CircularPier', 'X')
 mcInstance.MCAnalysis(4244, 0)
 momEff = mcInstance.MCCurve()
 ```
-<img src="https://github.com/Penghui0616/MCAnalysis/blob/master/Circular.png" width =40% height =40% div align="center">
+<img src="https://github.com/Penghui0616/MCAnalysis/blob/master/Circular.png" div align="center">
 
 ## Rectangular section moment curvature analysis
 ```python 

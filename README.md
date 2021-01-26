@@ -8,7 +8,7 @@ This is an auto moment-curvature analysis tool. Mesh generation is accomplished 
 ## Tutorials 
 1. download the zip file.
 2. download gmsh.exe ([download gmsh](https://gmsh.info/)) that satifies your operation system,and put gmsh.exe to your unzip file in step 1. 
-3. confirm the OpenSeesPy, matplotlib, numpy, pygmesh are instelled.
+3. confirm the openseespy, matplotlib, numpy, pygmesh are instelled.
 
 
 The followings are some basic examples, and you can also find them in the download files.
